@@ -23,7 +23,7 @@ class SpotsSpider(scrapy.Spider):
         item["score"] = product.css("b.c-rating__val > span ::text").extract_first()
         item["score_dinner"] = product.css("div.rdheader-rating__time > span.rdheader-rating__time-icon--dinner > em ::text").extract_first()
         item["score_lunch"] = product.css("div.rdheader-rating__time > span.rdheader-rating__time-icon--lunch > em ::text").extract_first()
-        item["reviewCount"] = product.css("span.rdheader-rating__review-target > em ::text").extract_first()
+        item["reviewCount"] = product.css("span.rdheader-rating__review-target > a > em ::text").extract_first()
         item["budget_dinner"] = product.css("div.rdheader-budget > p.rdheader-budget__icon--dinner > span.rdheader-budget__price > a ::text").extract_first()
         item["budget_lunch"] = product.css("div.rdheader-budget > p.rdheader-budget__icon--lunch > span.rdheader-budget__price > a ::text").extract_first()
         item["genre"] = product.css("div.rstinfo-table > table.rstinfo-table__table > tbody > tr > td > span ::text").extract_first()
