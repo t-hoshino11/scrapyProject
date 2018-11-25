@@ -6,7 +6,10 @@ class SpotsSpider(scrapy.Spider):
     name = "spots"
     allowed_domains = ["tabelog.com"]
     start_urls = [
-        'https://tabelog.com/tokyo/A1314/A131403/',
+        # 横浜中華街
+        'https://tabelog.com/kanagawa/A1401/A140105/',
+        # 品川
+        # 'https://tabelog.com/tokyo/A1314/A131403/',
     ]
 
     def parse(self, response):
@@ -27,14 +30,4 @@ class SpotsSpider(scrapy.Spider):
         item["budget_dinner"] = product.css("div.rdheader-budget > p.rdheader-budget__icon--dinner > span.rdheader-budget__price > a ::text").extract_first()
         item["budget_lunch"] = product.css("div.rdheader-budget > p.rdheader-budget__icon--lunch > span.rdheader-budget__price > a ::text").extract_first()
         item["genre"] = product.css("div.rstinfo-table > table.rstinfo-table__table > tbody > tr > td > span ::text").extract_first()
-        # item["date"] = product.css("span.opn_date > strong ::text").extract_first()
-        # item["checkin"] =product.css("div.mainBox > div.rateBox li#ci > a > strong ::text").extract_first()
-        # item["ranking"] =product.css("div.mainBox > div.rateBox li#rk > a > strong ::text").extract_first()
-        # item['category'] = response.xpath(
-        #     "//ul[@class='breadcrumb']/li[@class='active']/preceding-sibling::li[1]/a/text()"
-        # ).extract_first()
-        # item['description'] = response.xpath(
-        #     "//div[@id='product_description']/following-sibling::p/text()"
-        # ).extract_first()
-        # item['price'] = response.css('p.price_color ::text').extract_first()
         yield item
